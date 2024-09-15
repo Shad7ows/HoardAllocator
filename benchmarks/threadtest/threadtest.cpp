@@ -52,101 +52,101 @@ int objSize = 1;
 
 class Foo {
 public:
-  Foo (void)
-    : x (14),
-      y (29)
-    {}
+	Foo(void)
+		: x(14),
+		y(29)
+	{}
 
-  int x;
-  int y;
+	int x;
+	int y;
 };
 
 
-void worker ()
+void worker()
 {
-  int i, j;
-  Foo ** a;
-  a = new Foo * [nobjects / nthreads];
+	int i, j;
+	Foo** a;
+	a = new Foo * [nobjects / nthreads];
 
-  for (j = 0; j < niterations; j++) {
+	for (j = 0; j < niterations; j++) {
 
-    for (i = 0; i < (nobjects / nthreads); i ++) {
-      a[i] = new Foo[objSize];
+		for (i = 0; i < (nobjects / nthreads); i++) {
+			a[i] = new Foo[objSize];
 #if 1
-      for (volatile int d = 0; d < work; d++) {
-	volatile int f = 1;
-	f = f + f;
-	f = f * f;
-	f = f + f;
-	f = f * f;
-      }
+			for (volatile int d = 0; d < work; d++) {
+				volatile int f = 1;
+				f = f + f;
+				f = f * f;
+				f = f + f;
+				f = f * f;
+			}
 #endif
-      assert (a[i]);
-    }
-    
-    for (i = 0; i < (nobjects / nthreads); i ++) {
-      delete[] a[i];
-#if 1
-      for (volatile int d = 0; d < work; d++) {
-	volatile int f = 1;
-	f = f + f;
-	f = f * f;
-	f = f + f;
-	f = f * f;
-      }
-#endif
-    }
-  }
+			assert(a[i]);
+		}
 
-  delete [] a;
+		for (i = 0; i < (nobjects / nthreads); i++) {
+			delete[] a[i];
+#if 1
+			for (volatile int d = 0; d < work; d++) {
+				volatile int f = 1;
+				f = f + f;
+				f = f * f;
+				f = f + f;
+				f = f * f;
+			}
+#endif
+		}
+	}
+
+	delete[] a;
 }
 
-int main (int argc, char * argv[])
+int main(int argc, char* argv[])
 {
-  thread ** threads;
-  
-  if (argc >= 2) {
-    nthreads = atoi(argv[1]);
-  }
+	thread** threads;
 
-  if (argc >= 3) {
-    niterations = atoi(argv[2]);
-  }
+	if (argc >= 2) {
+		nthreads = atoi(argv[1]);
+	}
 
-  if (argc >= 4) {
-    nobjects = atoi(argv[3]);
-  }
+	if (argc >= 3) {
+		niterations = atoi(argv[2]);
+	}
 
-  if (argc >= 5) {
-    work = atoi(argv[4]);
-  }
+	if (argc >= 4) {
+		nobjects = atoi(argv[3]);
+	}
 
-  if (argc >= 6) {
-    objSize = atoi(argv[5]);
-  }
+	if (argc >= 5) {
+		work = atoi(argv[4]);
+	}
 
-  printf ("Running threadtest for %d threads, %d iterations, %d objects, %d work and %d objSize...\n", nthreads, niterations, nobjects, work, objSize);
+	if (argc >= 6) {
+		objSize = atoi(argv[5]);
+	}
 
-  threads = new thread*[nthreads];
+	printf("Running threadtest for %d threads, %d iterations, %d objects, %d work and %d objSize...\n", nthreads, niterations, nobjects, work, objSize);
 
-  high_resolution_clock t;
-  auto start = t.now();
+	threads = new thread * [nthreads];
 
-  int i;
-  for (i = 0; i < nthreads; i++) {
-    threads[i] = new thread(worker);
-  }
+	high_resolution_clock t;
+	auto start = t.now();
 
-  for (i = 0; i < nthreads; i++) {
-    threads[i]->join();
-  }
+	int i;
+	for (i = 0; i < nthreads; i++) {
+		threads[i] = new thread(worker);
+	}
 
-  auto stop = t.now();
-  auto elapsed = duration_cast<duration<double>>(stop - start);
+	for (i = 0; i < nthreads; i++) {
+		threads[i]->join();
+	}
 
-  cout << "Time elapsed = " << elapsed.count() << endl;
+	auto stop = t.now();
+	auto elapsed = duration_cast<duration<double>>(stop - start);
 
-  delete [] threads;
+	cout << "Time elapsed = " << elapsed.count() << endl;
 
-  return 0;
+	delete[] threads;
+
+	return 0;
 }

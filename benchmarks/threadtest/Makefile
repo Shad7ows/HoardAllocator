@@ -1,4 +1,6 @@
-include ../Makefile.inc
+# تم تحويله الى تعليق لنتمكن من بنائه على نظام ويندوز
+# include ../Makefile.inc 
+
 
 TARGET = threadtest
 
