@@ -9,3 +9,6 @@
 a.out
 *.exp
 *.lib
+.vs
+Release
+Debug

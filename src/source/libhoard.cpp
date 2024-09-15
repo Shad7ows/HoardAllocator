@@ -90,14 +90,15 @@ static char * initBufferPtr = initBuffer;
 
 extern bool isCustomHeapInitialized();
 
-#include "Heap-Layers/wrappers/generic-memalign.cpp"
+#include "../Heap-Layers/wrappers/generic-memalign.cpp"
 
 extern "C" {
 
-#if defined(__GNUG__)
-  void * xxmalloc (size_t sz)
+#if defined(__GNUG__) or defined(__clang__)
+    void * __attribute__((flatten)) xxmalloc (size_t sz) __attribute__((alloc_size(1))) __attribute((malloc))
 #else
-  void * __attribute__((flatten)) xxmalloc (size_t sz) __attribute__((alloc_size(1))) __attribute((malloc))
+    //void * xxmalloc (size_t sz)
+    _Post_writable_byte_size_(sz) __forceinline void* xxmalloc(size_t sz)
 #endif
   {
     if (isCustomHeapInitialized()) {
