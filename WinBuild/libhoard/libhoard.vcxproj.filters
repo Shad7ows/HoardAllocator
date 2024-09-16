@@ -86,9 +86,6 @@
     <ClInclude Include="..\..\src\include\hoard\emptyhoardmanager.h">
       <Filter>Header Files\hoard</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\include\hoard\geometricsizeclass.h">
-      <Filter>Header Files\hoard</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\include\hoard\globalheap.h">
       <Filter>Header Files\hoard</Filter>
     </ClInclude>
@@ -148,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\include\VERSION.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\hoard\geometricsizeclass.h">
+      <Filter>Header Files\hoard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

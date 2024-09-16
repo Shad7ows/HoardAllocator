@@ -26,8 +26,10 @@
 
 #define versionMessage "Using the Hoard memory allocator (http://www.hoard.org), version " HOARD_VERSION_STRING "\n"
 
-// Disable size checks in ANSIwrapper.
-#define HL_NO_MALLOC_SIZE_CHECKS 0
+ // Disable size checks in ANSIwrapper.
+ // يجب تعليقها في حال عدم الرغبة في استخدام التحقق من الحجم المحجوز
+ // عند تعليقها في نظام ويندوز يظهر خطأ في المحاذاة alignment
+#define HL_MALLOC_SIZE_CHECKS
 
 #include "heaplayers.h"
 

@@ -38,7 +38,7 @@ namespace HL {
     using SuperHeap::SuperHeap;
 
     inline void * malloc (size_t sz) {
-#if !defined(HL_NO_MALLOC_SIZE_CHECKS)
+#if defined(HL_MALLOC_SIZE_CHECKS)
       static constexpr int alignment = 16; // safe for all platforms
       if (sz < alignment) {
       	sz = alignment;

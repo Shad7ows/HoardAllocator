@@ -16,7 +16,8 @@
 #ifndef HOARD_GEOMETRIC_SIZECLASS_H
 #define HOARD_GEOMETRIC_SIZECLASS_H
 
-#include <cmath>
+//#include <cmath>
+#include <math.h>
 #include <cstdlib>
 #include <cassert>
 

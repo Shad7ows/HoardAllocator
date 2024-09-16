@@ -10,6 +10,6 @@ a.out
 *.exp
 *.lib
 .vs
-Release
 Debug
+Release
 Debug-Memory

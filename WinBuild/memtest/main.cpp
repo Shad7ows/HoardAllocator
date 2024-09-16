@@ -6,7 +6,7 @@ int main() {
 	int* a{};
 
 	auto start = high_resolution_clock::now();
-	for (auto i = 0; i < 50000000; i++) {
+	for (auto i = 0; i < 5000000; i++) {
 		a = (int*)malloc(4);
 		free(a);
 	}
