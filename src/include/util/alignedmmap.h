@@ -25,6 +25,8 @@
 #include "heaplayers.h"
 #include "mmapalloc.h"
 
+//#include <unordered_map>
+
 #define TRACK_SIZE 0
 
 using namespace std;
@@ -173,6 +175,10 @@ namespace Hoard {
 
     /// The map type, with all the pieces in place.
     typedef MyHashMap<keyType, valType, SourceHeap> mapType;
+    //typedef std::unordered_map<keyType, valType, std::hash<keyType>,
+    //    std::equal_to<keyType>,
+    //    HL::STLAllocator<std::pair<keyType const, valType>,
+    //    SourceHeap>> mapType; // didn't work with #define inline __forceinline in libhoard.cpp
 
     /// The map that maintains the size of each mmapped chunk.
 #if TRACK_SIZE

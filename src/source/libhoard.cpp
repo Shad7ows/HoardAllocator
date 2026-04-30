@@ -92,7 +92,7 @@ static char * initBufferPtr = initBuffer;
 
 extern bool isCustomHeapInitialized();
 
-#include "../Heap-Layers/wrappers/generic-memalign.cpp"
+#include "wrappers/generic-memalign.cpp"
 
 extern "C" {
 
@@ -164,5 +164,5 @@ extern "C" {
 
 #if defined(__linux__) && !defined(__MUSL__)
 // include gnuwrapper here to aid inlining of xxmalloc + friends
-#include "Heap-Layers/wrappers/gnuwrapper.cpp"
+#include "wrappers/gnuwrapper.cpp"
 #endif
