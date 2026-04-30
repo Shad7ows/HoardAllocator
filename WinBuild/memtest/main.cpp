@@ -6,8 +6,9 @@ int main() {
 	int* a{};
 
 	auto start = high_resolution_clock::now();
-	for (auto i = 0; i < 5000000; i++) {
+	for (auto i = 0; i < 500000000; i++) {
 		a = (int*)malloc(4);
+		*a += i;
 		free(a);
 	}
 	auto stop = high_resolution_clock::now();
@@ -16,7 +17,7 @@ int main() {
 	std::cout << duration.count() / 1000 << " ms" << std::endl;
 
 	a = (int*)malloc(4);
-	*a = 99999;
+	*a = 10;
 	std::cout << *a << std::endl;
 
 	return 9;
